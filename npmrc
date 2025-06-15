@@ -1,0 +1,6 @@
+# Ignorar warnings de deprecación durante el build
+audit=false
+fund=false
+# Continuar build aunque haya warnings
+legacy-peer-deps=true
+
