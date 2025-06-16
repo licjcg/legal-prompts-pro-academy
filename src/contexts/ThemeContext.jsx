@@ -11,32 +11,27 @@ export const useTheme = () => {
 }
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('lpp_theme')
     if (savedTheme) {
       setTheme(savedTheme)
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      setTheme(prefersDark ? 'dark' : 'light')
     }
   }, [])
 
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark')
     localStorage.setItem('lpp_theme', theme)
+    document.documentElement.setAttribute('data-theme', theme)
   }, [theme])
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light')
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark')
   }
 
   const value = {
     theme,
-    toggleTheme,
-    isDark: theme === 'dark'
+    toggleTheme
   }
 
   return (

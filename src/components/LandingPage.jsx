@@ -38,7 +38,7 @@ const LandingPage = () => {
     },
     {
       icon: Shield,
-      title: "Ética Profesional",
+      title: "Ética Profesional", 
       description: "Módulo completo sobre responsabilidad y confidencialidad legal",
       color: "from-purple-500 to-pink-600"
     },
@@ -98,56 +98,56 @@ const LandingPage = () => {
       title: "Desarrollo de GPTs",
       duration: "20 horas",
       lessons: 10,
-      description: "Crea agentes GPT personalizados con metodología INFUSE",
-      topics: ["GPT Builder", "Método INFUSE", "Bases de conocimiento", "Testing"]
+      description: "Crea asistentes especializados para tu práctica legal",
+      topics: ["Custom GPTs", "API Integration", "Fine-tuning", "Deployment"]
     },
     {
       id: 5,
-      title: "Ética y Responsabilidad",
+      title: "Automatización Legal",
       duration: "15 horas",
-      lessons: 8,
-      description: "Implementa marcos éticos y protocolos de cumplimiento",
-      topics: ["Responsabilidad", "Confidencialidad", "Supervisión", "Políticas"]
+      lessons: 9,
+      description: "Workflows automatizados y integración con sistemas existentes",
+      topics: ["Zapier", "Make", "APIs", "Integrations"]
     },
     {
       id: 6,
-      title: "Innovación y Futuro",
+      title: "Futuro de la Profesión",
       duration: "10 horas",
-      lessons: 5,
-      description: "Mantente a la vanguardia de las tendencias en IA legal",
-      topics: ["Tendencias", "Innovación", "Liderazgo", "Networking"]
+      lessons: 6,
+      description: "Tendencias, oportunidades y transformación del sector legal",
+      topics: ["Trends", "Business Models", "Innovation", "Leadership"]
     }
   ]
 
   const testimonials = [
     {
       name: "Dr. María González",
-      role: "Socia Senior, González & Asociados",
-      content: "Legal Prompts Pro transformó completamente nuestra práctica. Reducimos 60% el tiempo en redacción de contratos manteniendo la más alta calidad.",
+      role: "Socia, González & Asociados",
+      content: "Legal Prompts Pro transformó completamente nuestra práctica. Reducimos 70% el tiempo en redacción de contratos.",
       rating: 5,
-      image: "/api/placeholder/80/80"
+      avatar: "/api/placeholder/60/60"
     },
     {
-      name: "Lic. Carlos Mendoza", 
+      name: "Lic. Roberto Silva",
       role: "Director Legal, TechCorp",
-      content: "La metodología INFUSE nos permitió crear GPTs especializados que ahora son fundamentales en nuestro due diligence. ROI del 400% en 6 meses.",
+      content: "El simulador de IA es increíble. Practicamos casos complejos antes de implementar en la realidad.",
       rating: 5,
-      image: "/api/placeholder/80/80"
+      avatar: "/api/placeholder/60/60"
     },
     {
-      name: "Dra. Ana Rodríguez",
-      role: "Abogada Litigante",
-      content: "El módulo de ética fue revelador. Ahora uso IA con total confianza sabiendo que cumplo con todos los estándares profesionales.",
+      name: "Dra. Ana Martínez",
+      role: "Abogada Independiente",
+      content: "La certificación blockchain me abrió puertas en el mercado internacional. Inversión que se paga sola.",
       rating: 5,
-      image: "/api/placeholder/80/80"
+      avatar: "/api/placeholder/60/60"
     }
   ]
 
   const stats = [
-    { number: "2,847", label: "Abogados Graduados", icon: Users },
-    { number: "94%", label: "Tasa de Satisfacción", icon: Star },
-    { number: "67%", label: "Aumento Promedio de Eficiencia", icon: TrendingUp },
-    { number: "15", label: "Países Representados", icon: Globe }
+    { number: "1,247", label: "Abogados Certificados", icon: Users },
+    { number: "97%", label: "Tasa de Satisfacción", icon: Star },
+    { number: "70%", label: "Reducción de Tiempo", icon: TrendingUp },
+    { number: "15x", label: "ROI Promedio", icon: Target }
   ]
 
   useEffect(() => {
@@ -157,248 +157,153 @@ const LandingPage = () => {
     return () => clearInterval(interval)
   }, [])
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(prev => ({ ...prev, [entry.target.id]: true }))
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    document.querySelectorAll('[id]').forEach((el) => {
-      observer.observe(el)
-    })
-
-    return () => observer.disconnect()
-  }, [])
+  const scrollToSection = (sectionId) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="fixed top-0 w-full bg-background/80 backdrop-blur-lg border-b border-border z-50"
-      >
+      <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-accent flex items-center justify-center">
-                <Sparkles className="w-6 h-6 text-white" />
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center space-x-2"
+            >
+              <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
+                <Brain className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Legal Prompts Pro
               </span>
-            </div>
+            </motion.div>
+
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">
+              <button onClick={() => scrollToSection('features')} className="text-muted-foreground hover:text-foreground transition-colors">
                 Características
-              </a>
-              <a href="#modules" className="text-muted-foreground hover:text-foreground transition-colors">
-                Módulos
-              </a>
-              <a href="#testimonials" className="text-muted-foreground hover:text-foreground transition-colors">
+              </button>
+              <button onClick={() => scrollToSection('modules')} className="text-muted-foreground hover:text-foreground transition-colors">
+                Cursos
+              </button>
+              <button onClick={() => scrollToSection('simulator')} className="text-muted-foreground hover:text-foreground transition-colors">
+                Simulador
+              </button>
+              <button onClick={() => scrollToSection('testimonials')} className="text-muted-foreground hover:text-foreground transition-colors">
                 Testimonios
-              </a>
+              </button>
               <Link
-                to="/login"
-                className="bg-gradient-to-r from-primary to-accent text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all"
+                to="/register"
+                className="bg-gradient-to-r from-primary to-accent text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all duration-300"
               >
-                Acceder
+                Comenzar Ahora
               </Link>
             </div>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="text-center">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
+              className="mb-8"
             >
               <div className="inline-flex items-center px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
-                <Rocket className="w-4 h-4 mr-2" />
+                <Sparkles className="w-4 h-4 mr-2" />
                 Primera Academia de IA Legal en Latinoamérica
               </div>
               
-              <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Revoluciona tu
-                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block">
-                  Práctica Legal
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                  Domina la IA Legal
                 </span>
-                con IA Avanzada
+                <br />
+                <span className="text-foreground">
+                  Revoluciona tu Práctica
+                </span>
               </h1>
               
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                La única plataforma que combina <strong>ingeniería de prompts profesional</strong>, 
-                <strong> IA integrada real</strong> y <strong>ética legal rigurosa</strong> para 
-                transformar abogados en líderes tecnológicos.
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8">
+                La primera academia de ingeniería de prompts legales con IA integrada. 
+                Aprende a dominar ChatGPT, Claude y Gemini para revolucionar tu práctica jurídica.
               </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Link
-                  to="/register"
-                  className="bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-lg font-semibold hover:shadow-xl hover:shadow-primary/25 transition-all flex items-center justify-center group"
-                >
-                  Comenzar Transformación
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <button className="border border-border px-8 py-4 rounded-lg font-semibold hover:bg-secondary transition-all flex items-center justify-center">
-                  <Play className="w-5 h-5 mr-2" />
-                  Ver Demo
-                </button>
-              </div>
-
-              <div className="flex items-center space-x-6 text-sm text-muted-foreground">
-                <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  105 horas de contenido
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  Certificación blockchain
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  Acceso de por vida
-                </div>
-              </div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
             >
-              <div className="relative">
-                {/* Main Dashboard Preview */}
-                <div className="glass rounded-2xl p-6 shadow-2xl">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-accent"></div>
-                      <div>
-                        <div className="font-semibold">Juan Carlos Gómez</div>
-                        <div className="text-sm text-muted-foreground">Módulo 4: GPTs Avanzados</div>
-                      </div>
-                    </div>
-                    <div className="text-2xl font-bold text-primary">67%</div>
-                  </div>
-                  
-                  <div className="progress-bar h-2 rounded-full mb-6">
-                    <div className="h-full w-2/3 bg-gradient-to-r from-primary to-accent rounded-full"></div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="bg-background/50 rounded-lg p-3">
-                      <div className="text-sm text-muted-foreground">Racha Actual</div>
-                      <div className="text-xl font-bold text-orange-500">15 días</div>
-                    </div>
-                    <div className="bg-background/50 rounded-lg p-3">
-                      <div className="text-sm text-muted-foreground">Ranking</div>
-                      <div className="text-xl font-bold text-purple-500">#23</div>
-                    </div>
-                  </div>
-
-                  <div className="terminal rounded-lg p-4">
-                    <div className="terminal-header mb-2"></div>
-                    <div className="font-mono text-sm text-green-400">
-                      <div className="mb-1">$ prompt: "Analiza este contrato de..."</div>
-                      <div className="mb-1 text-blue-400">✓ Análisis completado</div>
-                      <div className="text-yellow-400 animate-typing">
-                        Generando recomendaciones...
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating Elements */}
-                <motion.div
-                  className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <Trophy className="w-8 h-8 text-white" />
-                </motion.div>
-
-                <motion.div
-                  className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg"
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                >
-                  <Brain className="w-6 h-6 text-white" />
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 bg-secondary/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
+              <Link
+                to="/register"
+                className="bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
               >
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center">
-                  <stat.icon className="w-8 h-8 text-white" />
+                Comenzar Ahora
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              
+              <button
+                onClick={() => scrollToSection('simulator')}
+                className="border border-border text-foreground px-8 py-4 rounded-lg text-lg font-semibold hover:bg-muted transition-all duration-300 flex items-center justify-center group"
+              >
+                <Play className="mr-2 w-5 h-5" />
+                Ver Demo
+              </button>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
+            >
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="flex justify-center mb-2">
+                    <stat.icon className="w-8 h-8 text-primary" />
+                  </div>
+                  <div className="text-3xl font-bold text-foreground mb-1">{stat.number}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
-                <div className="text-3xl font-bold text-foreground mb-2">{stat.number}</div>
-                <div className="text-muted-foreground">{stat.label}</div>
-              </motion.div>
-            ))}
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="features" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isVisible.features ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold mb-6">
-              ¿Por qué Legal Prompts Pro es
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block">
-                Verdaderamente Disruptivo?
-              </span>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Características <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Revolucionarias</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              No somos otro curso online. Somos la primera plataforma que combina educación premium, 
-              IA real integrada y estándares éticos rigurosos para crear verdaderos líderes en legal tech.
+              Tecnología de vanguardia diseñada específicamente para profesionales del derecho
             </p>
-          </motion.div>
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isVisible.features ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="glass rounded-2xl p-6 hover-lift group"
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-all duration-300 group"
               >
                 <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   <feature.icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                 <p className="text-muted-foreground">{feature.description}</p>
               </motion.div>
             ))}
@@ -407,51 +312,39 @@ const LandingPage = () => {
       </section>
 
       {/* Modules Section */}
-      <section id="modules" className="py-20 bg-secondary/30 px-4 sm:px-6 lg:px-8">
+      <section id="modules" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isVisible.modules ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold mb-6">
-              Curriculum Profesional
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block">
-                105 Horas de Excelencia
-              </span>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Módulos de <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Especialización</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Seis módulos diseñados por expertos que te llevarán desde los fundamentos 
-              hasta convertirte en un líder en la intersección de derecho y tecnología.
+              105 horas de contenido premium. Desde fundamentos hasta técnicas avanzadas de prompt engineering.
             </p>
-          </motion.div>
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {modules.map((module, index) => (
               <motion.div
                 key={module.id}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isVisible.modules ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-card rounded-2xl p-6 border border-border hover-lift group"
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-all duration-300"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-primary to-accent flex items-center justify-center text-white font-bold">
-                    {module.id}
+                  <div className="flex items-center space-x-2">
+                    <BookOpen className="w-5 h-5 text-primary" />
+                    <span className="text-sm text-muted-foreground">{module.duration}</span>
                   </div>
-                  <div className="text-sm text-muted-foreground">
-                    {module.duration} • {module.lessons} lecciones
+                  <div className="flex items-center space-x-2">
+                    <Play className="w-4 h-4 text-primary" />
+                    <span className="text-sm text-muted-foreground">{module.lessons} lecciones</span>
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                  {module.title}
-                </h3>
-                
-                <p className="text-muted-foreground mb-4">
-                  {module.description}
-                </p>
+                <h3 className="text-xl font-semibold mb-3">{module.title}</h3>
+                <p className="text-muted-foreground mb-4">{module.description}</p>
                 
                 <div className="flex flex-wrap gap-2">
                   {module.topics.map((topic, topicIndex) => (
@@ -469,34 +362,71 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+      {/* Simulator Preview */}
+      <section id="simulator" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Simulador <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">IA Legal</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Practica con GPT-4, Claude y Gemini en tiempo real. Casos reales, feedback instantáneo.
+            </p>
+          </div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={isVisible.testimonials ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="bg-card border border-border rounded-xl p-8 max-w-4xl mx-auto"
           >
-            <h2 className="text-4xl font-bold mb-6">
-              Transformaciones
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block">
-                Reales y Medibles
-              </span>
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Abogados de toda Latinoamérica ya están liderando la revolución legal con IA
-            </p>
+            <div className="mb-6">
+              <h3 className="text-xl font-semibold mb-4">Prueba el Simulador</h3>
+              <div className="bg-muted rounded-lg p-4 mb-4">
+                <div className="text-sm text-muted-foreground mb-2">Prompt:</div>
+                <div className="text-foreground">"Redacta una demanda por incumplimiento contractual..."</div>
+              </div>
+              <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+                <div className="text-sm text-primary mb-2">Respuesta IA:</div>
+                <div className="text-foreground">
+                  "DEMANDA POR INCUMPLIMIENTO CONTRACTUAL<br/><br/>
+                  Señor Juez:<br/>
+                  [Nombre del demandante], por derecho propio, con domicilio en..."
+                  <br/><br/>
+                  <span className="text-muted-foreground italic">Simulación en tiempo real con Legal Prompts Pro Academy</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <Link
+                to="/register"
+                className="bg-gradient-to-r from-primary to-accent text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 inline-flex items-center"
+              >
+                Acceder al Simulador Completo
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+            </div>
           </motion.div>
+        </div>
+      </section>
 
-          <div className="relative">
+      {/* Testimonials */}
+      <section id="testimonials" className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Lo que dicen nuestros <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Estudiantes</span>
+            </h2>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
             <motion.div
               key={currentTestimonial}
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.5 }}
-              className="glass rounded-2xl p-8 text-center"
+              exit={{ opacity: 0, x: -20 }}
+              className="bg-card border border-border rounded-xl p-8 text-center"
             >
               <div className="flex justify-center mb-4">
                 {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
@@ -504,19 +434,19 @@ const LandingPage = () => {
                 ))}
               </div>
               
-              <blockquote className="text-xl text-foreground mb-6 leading-relaxed">
+              <blockquote className="text-xl text-foreground mb-6">
                 "{testimonials[currentTestimonial].content}"
               </blockquote>
               
               <div className="flex items-center justify-center space-x-4">
                 <img
-                  src={testimonials[currentTestimonial].image}
+                  src={testimonials[currentTestimonial].avatar}
                   alt={testimonials[currentTestimonial].name}
-                  className="w-16 h-16 rounded-full"
+                  className="w-12 h-12 rounded-full"
                 />
                 <div className="text-left">
                   <div className="font-semibold">{testimonials[currentTestimonial].name}</div>
-                  <div className="text-muted-foreground text-sm">{testimonials[currentTestimonial].role}</div>
+                  <div className="text-sm text-muted-foreground">{testimonials[currentTestimonial].role}</div>
                 </div>
               </div>
             </motion.div>
@@ -526,10 +456,8 @@ const LandingPage = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    index === currentTestimonial 
-                      ? 'bg-primary' 
-                      : 'bg-muted hover:bg-muted-foreground'
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    index === currentTestimonial ? 'bg-primary' : 'bg-muted-foreground/30'
                   }`}
                 />
               ))}
@@ -538,184 +466,76 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-20 bg-secondary/30 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isVisible.pricing ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold mb-6">
-              Inversión en tu
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block">
-                Futuro Profesional
-              </span>
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Una inversión que se paga sola con el primer caso optimizado con IA
-            </p>
-          </motion.div>
-
-          <div className="glass rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10"></div>
-            <div className="relative z-10">
-              <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-accent text-white rounded-full text-sm font-medium mb-6">
-                <Award className="w-4 h-4 mr-2" />
-                Oferta de Lanzamiento - 40% OFF
-              </div>
-              
-              <div className="mb-6">
-                <div className="text-6xl font-bold mb-2">
-                  <span className="text-muted-foreground line-through text-3xl">$497.000</span>
-                  <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block">
-                    $297.000
-                  </span>
-                </div>
-                <div className="text-muted-foreground">ARS - Pago único, acceso de por vida</div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6 mb-8 text-left">
-                <div className="space-y-3">
-                  <div className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span>105 horas de contenido premium</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span>Simulador de IA integrado</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span>Certificación blockchain</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span>Casos reales anonimizados</span>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span>Comunidad exclusiva</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span>Actualizaciones de por vida</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span>Soporte prioritario</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                    <span>Garantía 30 días</span>
-                  </div>
-                </div>
-              </div>
-
-              <Link
-                to="/register"
-                className="inline-flex items-center bg-gradient-to-r from-primary to-accent text-white px-12 py-4 rounded-lg font-semibold text-lg hover:shadow-xl hover:shadow-primary/25 transition-all group"
-              >
-                Comenzar Ahora
-                <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-
-              <div className="mt-6 text-sm text-muted-foreground">
-                🔒 Pago seguro • 💳 Todos los medios de pago • 📱 Acceso inmediato
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={isVisible.cta ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl font-bold mb-6">
-              ¿Listo para liderar la
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent block">
-                Revolución Legal?
-              </span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              ¿Listo para Revolucionar tu <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Práctica Legal?</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Únete a los abogados más innovadores de Latinoamérica. 
-              La competencia llegará en 12-18 meses. Tú puedes empezar hoy.
+              Únete a más de 1,247 abogados que ya dominan la IA legal
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+            <div className="bg-card border border-border rounded-xl p-8 mb-8">
+              <div className="text-center mb-6">
+                <div className="text-sm text-muted-foreground mb-2">Precio de Lanzamiento</div>
+                <div className="text-4xl font-bold text-foreground mb-2">$497,000 ARS</div>
+                <div className="text-muted-foreground">Acceso completo de por vida • Actualizaciones incluidas</div>
+              </div>
+              
               <Link
                 to="/register"
-                className="bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-lg font-semibold hover:shadow-xl hover:shadow-primary/25 transition-all flex items-center justify-center group"
+                className="w-full bg-gradient-to-r from-primary to-accent text-white py-4 rounded-lg text-lg font-semibold hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
               >
-                Comenzar Transformación
-                <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                Inscribirme Ahora
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <button className="border border-border px-8 py-4 rounded-lg font-semibold hover:bg-secondary transition-all flex items-center justify-center">
-                <MessageSquare className="w-5 h-5 mr-2" />
-                Hablar con Experto
-              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center justify-center">
+                <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                Garantía 30 días
+              </div>
+              <div className="flex items-center justify-center">
+                <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                Soporte 24/7
+              </div>
+              <div className="flex items-center justify-center">
+                <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                Certificación incluida
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-card border-t border-border py-12 px-4 sm:px-6 lg:px-8">
+      <footer className="py-12 px-4 sm:px-6 lg:px-8 bg-muted/50 border-t border-border">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-accent flex items-center justify-center">
-                  <Sparkles className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-xl font-bold">Legal Prompts Pro</span>
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-2 mb-4 md:mb-0">
+              <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
+                <Brain className="w-5 h-5 text-white" />
               </div>
-              <p className="text-muted-foreground">
-                La primera academia de ingeniería de prompts legales en Latinoamérica.
-              </p>
+              <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Legal Prompts Pro Academy
+              </span>
             </div>
             
-            <div>
-              <h3 className="font-semibold mb-4">Plataforma</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Módulos</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Simulador</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Comunidad</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Certificación</a></li>
-              </ul>
+            <div className="text-center md:text-right">
+              <div className="text-muted-foreground mb-2">
+                © 2024 Legal Prompts Pro Academy. Revolucionando la educación legal con IA.
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Desarrollado por Juan Carlos Gómez - Patagonia Legal
+              </div>
             </div>
-            
-            <div>
-              <h3 className="font-semibold mb-4">Recursos</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Casos de Estudio</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Webinars</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Soporte</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold mb-4">Legal</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Términos</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Privacidad</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Cookies</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Contacto</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 Legal Prompts Pro Academy. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>

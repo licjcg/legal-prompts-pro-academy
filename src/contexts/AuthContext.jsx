@@ -109,18 +109,19 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('lpp_user')
   }
 
-  const updateProgress = (moduleId, lessonId, progress) => {
+  const updateProgress = (moduleId, progress) => {
     if (!user) return
-
+    
     const updatedUser = {
       ...user,
       progress: {
         ...user.progress,
-        overall: Math.min(user.progress.overall + progress, 100),
-        lastActive: new Date().toISOString()
-      }
+        overall: Math.min(100, user.progress.overall + progress),
+        completedModules: user.progress.completedModules + (progress === 100 ? 1 : 0)
+      },
+      lastActive: new Date().toISOString()
     }
-
+    
     setUser(updatedUser)
     localStorage.setItem('lpp_user', JSON.stringify(updatedUser))
   }
