@@ -24,6 +24,7 @@ import {
   Database,
   Cpu
 } from 'lucide-react'
+import PricingCard from './PricingCard'
 
 const LandingPage = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
@@ -161,6 +162,11 @@ const LandingPage = () => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const handlePurchase = () => {
+    // Redirect to register page
+    window.location.href = '/register'
+  }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -189,6 +195,9 @@ const LandingPage = () => {
               </button>
               <button onClick={() => scrollToSection('simulator')} className="text-muted-foreground hover:text-foreground transition-colors">
                 Simulador
+              </button>
+              <button onClick={() => scrollToSection('pricing')} className="text-muted-foreground hover:text-foreground transition-colors">
+                Precios
               </button>
               <button onClick={() => scrollToSection('testimonials')} className="text-muted-foreground hover:text-foreground transition-colors">
                 Testimonios
@@ -411,21 +420,47 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section id="testimonials" className="py-16 px-4 sm:px-6 lg:px-8">
+      {/* Pricing Section */}
+      <section id="pricing" className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Oferta de <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">Lanzamiento</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Aprovecha esta oportunidad única. El precio nunca volverá a ser tan bajo.
+            </p>
+          </div>
+
+          <div className="flex justify-center">
+            <PricingCard 
+              isLaunchOffer={true}
+              launchEndDate="2025-07-16T23:59:59"
+              onPurchase={handlePurchase}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Lo que dicen nuestros <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Estudiantes</span>
             </h2>
+            <p className="text-xl text-muted-foreground">
+              Testimonios reales de abogados que transformaron su práctica
+            </p>
           </div>
 
           <div className="max-w-4xl mx-auto">
             <motion.div
               key={currentTestimonial}
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.5 }}
               className="bg-card border border-border rounded-xl p-8 text-center"
             >
               <div className="flex justify-center mb-4">
@@ -434,24 +469,24 @@ const LandingPage = () => {
                 ))}
               </div>
               
-              <blockquote className="text-xl text-foreground mb-6">
+              <blockquote className="text-xl text-foreground mb-6 italic">
                 "{testimonials[currentTestimonial].content}"
               </blockquote>
               
               <div className="flex items-center justify-center space-x-4">
-                <img
-                  src={testimonials[currentTestimonial].avatar}
-                  alt={testimonials[currentTestimonial].name}
-                  className="w-12 h-12 rounded-full"
-                />
+                <div className="w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold">
+                    {testimonials[currentTestimonial].name.split(' ').map(n => n[0]).join('')}
+                  </span>
+                </div>
                 <div className="text-left">
                   <div className="font-semibold">{testimonials[currentTestimonial].name}</div>
-                  <div className="text-sm text-muted-foreground">{testimonials[currentTestimonial].role}</div>
+                  <div className="text-muted-foreground text-sm">{testimonials[currentTestimonial].role}</div>
                 </div>
               </div>
             </motion.div>
 
-            <div className="flex justify-center mt-6 space-x-2">
+            <div className="flex justify-center mt-8 space-x-2">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
@@ -466,38 +501,30 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10">
+      {/* Final CTA Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              ¿Listo para Revolucionar tu <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Práctica Legal?</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              ¿Listo para <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Revolucionar</span> tu Práctica Legal?
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
               Únete a más de 1,247 abogados que ya dominan la IA legal
             </p>
+            
+            <Link
+              to="/register"
+              className="bg-gradient-to-r from-primary to-accent text-white px-12 py-4 rounded-lg text-xl font-bold hover:shadow-xl transition-all duration-300 inline-flex items-center group"
+            >
+              Inscribirme Ahora
+              <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
+            </Link>
 
-            <div className="bg-card border border-border rounded-xl p-8 mb-8">
-              <div className="text-center mb-6">
-                <div className="text-sm text-muted-foreground mb-2">Precio de Lanzamiento</div>
-                <div className="text-4xl font-bold text-foreground mb-2">$497,000 ARS</div>
-                <div className="text-muted-foreground">Acceso completo de por vida • Actualizaciones incluidas</div>
-              </div>
-              
-              <Link
-                to="/register"
-                className="w-full bg-gradient-to-r from-primary to-accent text-white py-4 rounded-lg text-lg font-semibold hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
-              >
-                Inscribirme Ahora
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-muted-foreground">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 max-w-2xl mx-auto">
               <div className="flex items-center justify-center">
                 <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
                 Garantía 30 días
