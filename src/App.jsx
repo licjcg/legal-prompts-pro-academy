@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './App.css'
 
@@ -12,6 +12,8 @@ import Community from './components/Community'
 import Profile from './components/Profile'
 import Login from './components/Login'
 import Register from './components/Register'
+import TermsConditions from './components/TermsConditions'
+import PrivacyPolicy from './components/PrivacyPolicy'
 
 // Context
 import { AuthProvider, useAuth } from './contexts/AuthContext'
@@ -93,6 +95,10 @@ function AppContent() {
             <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
             <Route path="/register" element={user ? <Navigate to="/dashboard" /> : <Register />} />
             
+            {/* Legal Pages */}
+            <Route path="/terminos-condiciones" element={<TermsConditions />} />
+            <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
+            
             {/* Protected Routes */}
             <Route path="/dashboard" element={
               <ProtectedRoute>
@@ -140,4 +146,3 @@ function App() {
 }
 
 export default App
-
